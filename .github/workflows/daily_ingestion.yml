@@ -16,14 +16,12 @@ jobs:
           git config --global user.name "eatingliam85"
           git config --global user.email "liam.gillies@gmail.com"
 
-      # Push fresh data to main
       - name: Commit to main
         run: |
           git add data
           git diff --cached --quiet || git commit -m "Update latest UFC data"
           git push origin main
 
-      # Push archives to separate branch
       - name: Commit to archive branch
         run: |
           git fetch origin archive-data || git checkout --orphan archive-data
