@@ -1,22 +1,35 @@
-- name: Set up Git identity
-  run: |
-    git config --global user.name "eatingliam85"
-    git config --global user.email "liam.gillies@gmail.com"
+name: Daily Ingestion
 
-# Push fresh data to main
-- name: Commit to main
-  run: |
-    git add data
-    git diff --cached --quiet || git commit -m "Update latest UFC data"
-    git push origin main
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight UTC
+  workflow_dispatch:
 
-# Push archives to separate branch
-- name: Commit to archive branch
-  run: |
-    git fetch origin archive-data || git checkout --orphan archive-data
-    git checkout archive-data
-    mkdir -p archive
-    cp -r archive/* . || true
-    git add .
-    git diff --cached --quiet || git commit -m "Archive UFC data"
-    git push origin archive-data --force
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Git identity
+        run: |
+          git config --global user.name "eatingliam85"
+          git config --global user.email "liam.gillies@gmail.com"
+
+      # Push fresh data to main
+      - name: Commit to main
+        run: |
+          git add data
+          git diff --cached --quiet || git commit -m "Update latest UFC data"
+          git push origin main
+
+      # Push archives to separate branch
+      - name: Commit to archive branch
+        run: |
+          git fetch origin archive-data || git checkout --orphan archive-data
+          git checkout archive-data
+          mkdir -p archive
+          cp -r archive/* . || true
+          git add .
+          git diff --cached --quiet || git commit -m "Archive UFC data"
+          git push origin archive-data --force
