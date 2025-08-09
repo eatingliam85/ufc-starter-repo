@@ -1,0 +1,4 @@
+def parse(raw_data):
+    # Placeholder for parsing logic
+    print("Parsing UFC fighter data...")
+    return raw_data
