@@ -1,5 +1,0 @@
-requests
-beautifulsoup4
-pandas
-sqlalchemy
-youtube-transcript-api

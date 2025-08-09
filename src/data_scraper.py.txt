@@ -1,4 +1,0 @@
-def scrape_all():
-    # Placeholder for scraping UFC data from multiple sources
-    print("Scraping UFC fighter data...")
-    return []

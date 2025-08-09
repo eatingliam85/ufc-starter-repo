@@ -1,5 +1,0 @@
-"""UFC Starter Repo Package Initialization"""
-
-# You can optionally import commonly used modules here
-# from .data_scraper import scrape_data
-# from .database import save_to_db
