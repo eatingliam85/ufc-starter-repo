@@ -1,0 +1,3 @@
+def store(data):
+    # Placeholder for database storing logic
+    print(f"Storing {len(data)} records into database...")

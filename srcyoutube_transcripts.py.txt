@@ -1,0 +1,3 @@
+def extract_and_store():
+    # Placeholder for extracting YouTube transcripts
+    print("Extracting and storing YouTube transcripts...")
