@@ -27,8 +27,12 @@ jobs:
 
       - name: Commit to archive branch
         run: |
-          git fetch origin archive-data || git checkout --orphan archive-data
-          git checkout archive-data
+          if git show-ref --verify --quiet refs/remotes/origin/archive-data; then
+            git fetch origin archive-data
+            git checkout archive-data
+          else
+            git checkout --orphan archive-data
+          fi
           mkdir -p archive
           cp -r archive/* . || true
           git add .
