@@ -28,7 +28,7 @@ jobs:
       - name: Commit to archive branch
         run: |
           git fetch origin || true
-          if git branch -r | grep origin/archive-data; then
+          if git ls-remote --exit-code --heads origin archive-data; then
             git checkout archive-data
           else
             git checkout --orphan archive-data
