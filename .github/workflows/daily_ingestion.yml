@@ -28,8 +28,10 @@ jobs:
       - name: Commit to archive branch
         run: |
           git fetch origin || true
-          if git ls-remote --exit-code --heads origin archive-data; then
+          if git show-ref --quiet refs/heads/archive-data; then
             git checkout archive-data
+          elif git ls-remote --exit-code --heads origin archive-data; then
+            git checkout -b archive-data origin/archive-data
           else
             git checkout --orphan archive-data
           fi
