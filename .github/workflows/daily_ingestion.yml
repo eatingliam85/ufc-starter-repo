@@ -18,16 +18,15 @@ jobs:
 
       - name: Commit to main
         run: |
-          git add data
           git diff --cached --quiet || git commit -m "Update latest UFC data"
           git push origin main
 
       - name: Commit to archive branch
-        run: |
-          git fetch origin archive-data || git checkout --orphan archive-data
-          git checkout archive-data
-          mkdir -p archive
-          cp -r archive/* . || true
-          git add .
-          git diff --cached --quiet || git commit -m "Archive UFC data"
-          git push origin archive-data --force
+  run: |
+    git fetch origin archive-data || git checkout --orphan archive-data
+    git checkout archive-data
+    mkdir -p archive
+    cp -r archive/* . || true
+    git add .
+    git diff --cached --quiet || git commit -m "Archive UFC data"
+    git push origin archive-data --force
